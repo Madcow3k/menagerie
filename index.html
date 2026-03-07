@@ -102,6 +102,69 @@
       .notify-form button { width: 100%; }
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMVYPEZDB2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMVYPEZDB2');
+  </script>
+  <!-- Brevo Forms CSS -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+  <style>
+    /* Override Brevo default styles to match dark theme */
+    .sib-form { background: transparent !important; padding: 0 !important; }
+    #sib-container { background: transparent !important; border: none !important; max-width: 100% !important; }
+    #sib-form-container { display: flex; flex-direction: column; align-items: center; }
+    .sib-form-block { display: none !important; } /* hide Newsletter title and subtitle */
+    .sib-input { background: transparent !important; }
+    .form__entry { margin: 0 !important; }
+    .entry__label { display: none !important; }
+    .entry__specification { display: none !important; }
+    .entry__field input.input {
+      background: #1a1a1a !important;
+      border: 1px solid #2a2a2a !important;
+      border-radius: 12px !important;
+      padding: 14px 20px !important;
+      font-size: 15px !important;
+      color: #f0f0f0 !important;
+      width: 280px !important;
+      outline: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    .entry__field input.input::placeholder { color: #444 !important; }
+    .sib-form-block__button {
+      background: #2a5c2a !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 12px !important;
+      padding: 14px 28px !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+      margin-top: 0 !important;
+    }
+    .sib-form-block__button:hover { background: #357535 !important; }
+    #sib-form > div { padding: 0 !important; }
+    #sib-form { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: flex-start; }
+    #success-message {
+      font-size: 14px !important;
+      color: #6dbf6d !important;
+      background: transparent !important;
+      border: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    #error-message {
+      font-size: 14px !important;
+      color: #ff6b6b !important;
+      background: transparent !important;
+      border: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    .sib-form-message-panel { max-width: 100% !important; }
+  </style>
 </head>
 <body>
   <main>
@@ -113,9 +176,47 @@
       I started tracking my tegu. Then my boa, my tarantula, my cats, my millipede.
       So I built something that could handle all of them, and it turned out pretty cool.
     </p>
-    <div class="notify-form">
-      <input type="email" placeholder="your@email.com" />
-      <button>Notify Me</button>
+    <div class="sib-form">
+      <div id="sib-form-container" class="sib-form-container">
+        <div id="error-message" class="sib-form-message-panel">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+          </div>
+        </div>
+        <div id="success-message" class="sib-form-message-panel">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">You&#039;re on the list. We&#039;ll send you a note when Menagerie launches. (no spam, I promise)</span>
+          </div>
+        </div>
+        <div id="sib-container" class="sib-container--large sib-container--vertical">
+          <form id="sib-form" method="POST" action="https://88721a85.sibforms.com/serve/MUIFAL2VnOfAfvEzNJlnDU-PGxj72OEtXCVCIhGJSDjjSsiTY3paNkkTBoZDnv51HiUpqY2r3h7xrLCRjGo6z5MhD6V6sSiV85CyhRpjiM12Qj5PflyY2kzyrYY48BTgNkiqRcqYad0KDJREZNGweYk99IXlXdM7AKvALOf90tfdB8mw60hGM71dlR-icPdypSMgRtw6ArKv54IFmA==" data-type="subscription">
+            <div>
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <div class="entry__field">
+                      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="your@email.com" data-required="true" required />
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="sib-form-block">
+                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                  <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
+                    <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                  </svg>
+                  Notify Me
+                </button>
+              </div>
+            </div>
+            <input type="text" name="email_address_check" value="" class="input--hidden">
+            <input type="hidden" name="locale" value="en">
+          </form>
+        </div>
+      </div>
     </div>
     <p class="note">No spam. Just a note when it launches.</p>
     <div class="animals">
