@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menagerie — Every Animal. One Home.</title>
+  <meta name="description" content="Menagerie is an exotic pet care tracking app for every species in your collection." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦎</text></svg>" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1A1A2E;
+      color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .icon { font-size: 72px; margin-bottom: 24px; line-height: 1; }
+    h1 { font-size: 48px; font-weight: 700; letter-spacing: -1px; color: #ffffff; margin-bottom: 12px; }
+    .tagline { font-size: 18px; color: #888; letter-spacing: 0.5px; margin-bottom: 48px; }
+    .badge {
+      display: inline-block;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 100px;
+      padding: 10px 24px;
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 48px;
+    }
+    .badge span { color: #6dbf6d; margin-right: 8px; }
+    .description {
+      max-width: 480px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #888;
+      margin-bottom: 56px;
+    }
+    .note { font-size: 13px; color: #444; margin-top: 16px; }
+    .animals {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 64px;
+      opacity: 0.4;
+    }
+    .animals span { font-size: 32px; }
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    footer p { font-size: 13px; color: #444; margin-bottom: 12px; }
+    footer a { color: #555; text-decoration: none; margin: 0 12px; font-size: 13px; transition: color 0.2s; }
+    footer a:hover { color: #888; }
+    @media (max-width: 480px) {
+      h1 { font-size: 36px; }
+    }
+
+    /* Brevo form overrides */
+    .sib-form { background: transparent !important; padding: 0 !important; }
+    #sib-container { background: transparent !important; border: none !important; max-width: 100% !important; }
+    #sib-form-container { display: flex; flex-direction: column; align-items: center; }
+    .sib-form-block { display: none !important; }
+    .sib-input { background: transparent !important; }
+    .form__entry { margin: 0 !important; }
+    .entry__label { display: none !important; }
+    .entry__specification { display: none !important; }
+    .entry__field input.input {
+      background: #1a1a1a !important;
+      border: 1px solid #2a2a2a !important;
+      border-radius: 12px !important;
+      padding: 14px 20px !important;
+      font-size: 15px !important;
+      color: #f0f0f0 !important;
+      width: 280px !important;
+      outline: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    .entry__field input.input::placeholder { color: #444 !important; }
+    .sib-form-block__button {
+      background: #2a5c2a !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 12px !important;
+      padding: 14px 28px !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+      margin-top: 0 !important;
+    }
+    .sib-form-block__button:hover { background: #357535 !important; }
+    #sib-form > div { padding: 0 !important; }
+    #sib-form {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center; align-items: flex-start;
+    }
+    #success-message {
+      font-size: 14px !important; color: #6dbf6d !important;
+      background: transparent !important; border: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    #error-message {
+      font-size: 14px !important; color: #ff6b6b !important;
+      background: transparent !important; border: none !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    .sib-form-message-panel { max-width: 100% !important; display: none !important; }
+    .sib-form-message-panel.active { display: block !important; }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMVYPEZDB2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMVYPEZDB2');
+  </script>
+
+  <!-- Brevo Forms CSS -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+</head>
+<body>
+  <main>
+    <div class="icon">🦎</div>
+    <h1>Menagerie</h1>
+    <p class="tagline">Every animal. One home.</p>
+    <div class="badge"><span>●</span> Arriving March 2026</div>
+    <p class="description">
+      I started tracking my tegu. Then my boa, my tarantula, my cats, my millipede.
+      So I built something that could handle all of them, and it turned out pretty cool.
+    </p>
+
+    <div class="sib-form">
+      <div id="sib-form-container" class="sib-form-container">
+        <div id="error-message" class="sib-form-message-panel">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+          </div>
+        </div>
+        <div id="success-message" class="sib-form-message-panel">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">You&#039;re on the list. We&#039;ll send you a note when Menagerie launches. (no spam, I promise)</span>
+          </div>
+        </div>
+        <div id="sib-container" class="sib-container--large sib-container--vertical">
+          <form id="sib-form" method="POST" action="https://88721a85.sibforms.com/serve/MUIFAL2VnOfAfvEzNJlnDU-PGxj72OEtXCVCIhGJSDjjSsiTY3paNkkTBoZDnv51HiUpqY2r3h7xrLCRjGo6z5MhD6V6sSiV85CyhRpjiM12Qj5PflyY2kzyrYY48BTgNkiqRcqYad0KDJREZNGweYk99IXlXdM7AKvALOf90tfdB8mw60hGM71dlR-icPdypSMgRtw6ArKv54IFmA==" data-type="subscription">
+            <div>
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <div class="entry__field">
+                      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="your@email.com" data-required="true" required />
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="sib-form-block">
+                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                  <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
+                    <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                  </svg>
+                  Notify Me
+                </button>
+              </div>
+            </div>
+            <input type="text" name="email_address_check" value="" class="input--hidden">
+            <input type="hidden" name="locale" value="en">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">No spam. Just a note when it launches.</p>
+    <div class="animals">
+      <span>🦎</span><span>🐍</span><span>🕷️</span><span>🐈</span><span>🦂</span><span>🐛</span>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Madcow Venture Company. All rights reserved.</p>
+    <div>
+      <a href="/research">Research</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="mailto:hello@mymenagerie.pet">Contact</a>
+    </div>
+  </footer>
+
+  <!-- Brevo form JS -->
+  <script>
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+    window.LOCALE = 'en';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
+    window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.translation = {
+      common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected' }
+    };
+    var AUTOHIDE = Boolean(0);
+  </script>
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+</body>
+</html>
