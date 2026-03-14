@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menagerie Welfare Index Methodology</title>
+  <meta name="description" content="The Menagerie Welfare Index methodology: how Menagerie measures captive exotic animal welfare using the Five Domains Model." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMVYPEZDB2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMVYPEZDB2');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A1A2E'/><text y='72' x='50' text-anchor='middle' font-size='60' font-family='serif'>🦎</text></svg>" />
+
+  <style>
+    :root {
+      --bg:      #1A1A2E;
+      --surface: #16213E;
+      --deep:    #0F3460;
+      --amber:   #E8B86D;
+      --teal:    #4ECDC4;
+      --green:   #95C17A;
+      --red:     #E07070;
+      --text:    #F5F0E8;
+      --muted:   #A0A0B0;
+      --border:  #2A2A4A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(26,26,46,0.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 500; letter-spacing: 0.05em;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--amber); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+
+    /* PAGE */
+    .page {
+      max-width: 740px; margin: 0 auto;
+      padding: 120px 32px 80px;
+    }
+
+    /* DOC HEADER */
+    .doc-header {
+      margin-bottom: 52px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 16px; display: block;
+    }
+    .doc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300; line-height: 1.15;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .doc-subtitle {
+      font-size: 1.1rem; font-weight: 300;
+      color: var(--muted); margin-bottom: 22px; line-height: 1.6;
+    }
+    .doc-meta {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      color: var(--muted); letter-spacing: 0.05em;
+    }
+    .meta-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); display: inline-block;
+      margin-right: 8px; vertical-align: middle;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 28px; margin-bottom: 52px;
+    }
+    .toc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px; display: block;
+    }
+    .toc ol { list-style: none; counter-reset: toc; padding: 0; display: flex; flex-direction: column; gap: 5px; margin: 0; }
+    .toc li { counter-increment: toc; }
+    .toc a {
+      font-family: 'DM Mono', monospace; font-size: 0.73rem;
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: baseline; gap: 10px;
+      transition: color 0.2s;
+    }
+    .toc a::before {
+      content: counter(toc, decimal-leading-zero);
+      color: var(--border); font-size: 0.62rem; flex-shrink: 0;
+    }
+    .toc a:hover { color: var(--amber); }
+
+    /* SECTIONS */
+    .sec { margin-bottom: 52px; }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem; font-weight: 400;
+      color: var(--text); margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 88px;
+    }
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--amber); margin: 28px 0 10px;
+      letter-spacing: 0.03em;
+      scroll-margin-top: 88px;
+    }
+
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 600; color: var(--text); }
+
+    ul, ol { padding-left: 20px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 5px; }
+    li { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+    li strong { color: var(--text); }
+
+    /* AUDIENCE GRID */
+    .audience-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; margin: 20px 0;
+    }
+    .audience-item { background: var(--surface); padding: 18px 20px; }
+    .audience-item strong {
+      display: block;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .audience-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* CALLOUT */
+    .callout {
+      background: rgba(78,205,196,0.05);
+      border: 1px solid rgba(78,205,196,0.18);
+      border-radius: 8px; padding: 18px 22px; margin: 20px 0;
+    }
+    .callout p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    .callout strong { color: var(--teal); }
+
+    /* DOMAIN BLOCKS */
+    .domain-block {
+      background: var(--surface);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 26px 30px; margin: 20px 0;
+    }
+    .domain-num {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 2px; display: block;
+    }
+    .domain-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .sub-label {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--teal); margin: 14px 0 7px; display: block;
+    }
+
+    /* TABLES */
+    .dt {
+      width: 100%; border-collapse: collapse;
+      margin: 18px 0; font-size: 0.875rem;
+    }
+    .dt th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-align: left;
+      padding: 9px 14px; background: var(--deep);
+      border-bottom: 1px solid var(--border);
+    }
+    .dt td {
+      padding: 9px 14px; color: var(--muted);
+      border-bottom: 1px solid rgba(42,42,74,0.5);
+      vertical-align: top; line-height: 1.5;
+    }
+    .dt tr:last-child td { border-bottom: none; }
+    .dt td:first-child { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--text); }
+    code {
+      font-family: 'DM Mono', monospace; font-size: 0.78rem;
+      color: var(--green); background: rgba(149,193,122,0.08);
+      padding: 1px 6px; border-radius: 3px;
+    }
+
+    /* WEIGHT CARDS */
+    .weight-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 18px 0;
+    }
+    .wc {
+      background: var(--surface);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .wc-name {
+      font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600;
+      color: var(--text); margin-bottom: 2px;
+    }
+    .wc-species {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      color: var(--muted); font-style: italic;
+      margin-bottom: 12px; display: block;
+    }
+    .wr {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 4px 0; border-bottom: 1px solid rgba(42,42,74,0.4);
+      font-size: 0.8rem;
+    }
+    .wr:last-of-type { border-bottom: none; }
+    .wr-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+    .wr-right { display: flex; align-items: center; gap: 7px; }
+    .wr-bar { height: 3px; border-radius: 2px; background: var(--amber); opacity: 0.65; }
+    .wr-pct { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--amber); min-width: 30px; text-align: right; }
+    .wc-note { font-size: 0.78rem; color: var(--muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); line-height: 1.55; }
+
+    /* CONFIDENCE */
+    .conf-list { display: flex; flex-direction: column; gap: 7px; margin: 16px 0; }
+    .conf-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 11px 14px;
+      background: var(--surface); border-radius: 7px;
+      border: 1px solid var(--border);
+    }
+    .conf-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .conf-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text); min-width: 130px; flex-shrink: 0; }
+    .conf-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* DISPLAY MODES */
+    .mode-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; margin: 18px 0;
+    }
+    .mc { background: var(--surface); padding: 20px; }
+    .mc-name {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 10px; display: block;
+    }
+    .mc ul { padding: 0; list-style: none; gap: 5px; margin: 0; }
+    .mc li { font-size: 0.8rem; color: var(--muted); }
+
+    /* LIMITATIONS */
+    .lim { border-left: 2px solid var(--border); padding-left: 18px; margin: 16px 0; }
+    .lim strong { display: block; margin-bottom: 4px; font-family: 'Syne', sans-serif; font-size: 0.88rem; }
+    .lim p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.65; }
+
+    /* CTA */
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--amber);
+      border-radius: 0 0 12px 12px;
+      padding: 34px 36px; margin: 52px 0 36px;
+      text-align: center;
+    }
+    .cta-block h2 { border: none; padding: 0; font-size: 1.4rem; margin-bottom: 10px; }
+    .cta-block p { color: var(--muted); margin-bottom: 22px; font-size: 0.95rem; }
+    .cta-btn {
+      display: inline-block; padding: 12px 26px;
+      background: var(--amber); color: #1A1A2E;
+      font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.05em; text-decoration: none;
+      border-radius: 8px; transition: background 0.2s;
+    }
+    .cta-btn:hover { background: #f0c880; }
+    .cta-note {
+      display: block; margin-top: 10px;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.05em;
+    }
+
+    /* CHANGELOG */
+    .changelog { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-family: 'DM Mono', monospace; font-size: 0.74rem; }
+    .cl-row { display: grid; grid-template-columns: 70px 130px 1fr; padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .cl-row:last-child { border-bottom: none; }
+    .cl-row.hd { background: var(--deep); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; }
+    .cl-row span:first-child { color: var(--amber); }
+
+    /* LEGAL */
+    .legal { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border); text-align: center; }
+    .legal p { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.8; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 40px 24px;
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    .foot-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 10px; }
+    .foot-logo span { color: var(--amber); }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 2; }
+    footer a { color: var(--amber); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 14px; }
+      .page { padding: 96px 20px 60px; }
+      .audience-grid, .weight-grid, .mode-grid { grid-template-columns: 1fr; }
+      .domain-block { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">Mena<span>gerie</span></a>
+    <div class="nav-links">
+      <a href="/research" class="active">Research</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="doc-header">
+      <span class="kicker">Methodology Document</span>
+      <h1 class="doc-title">Menagerie Welfare Index<br>Methodology</h1>
+      <p class="doc-subtitle">How Menagerie measures captive exotic animal welfare</p>
+      <div class="doc-meta">
+        <span><span class="meta-dot"></span>v1.0 &nbsp;&middot;&nbsp; March 2026</span>
+        <span>Madcow Venture Company</span>
+        <span>Foundation document</span>
+      </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+      <span class="toc-label">Contents</span>
+      <ol>
+        <li><a href="#about">What This Document Is</a></li>
+        <li><a href="#foundation">Theoretical Foundation</a></li>
+        <li><a href="#population">Why This Matters Beyond Individual Animals</a></li>
+        <li><a href="#domains">Domain Definitions and Data Mapping</a></li>
+        <li><a href="#weighting">Species-Specific Weighting Profiles</a></li>
+        <li><a href="#decay">Decay Curves</a></li>
+        <li><a href="#confidence">The Confidence Indicator</a></li>
+        <li><a href="#flags">Data Quality Flags</a></li>
+        <li><a href="#collective">The Collective Score</a></li>
+        <li><a href="#display">Display by Mode</a></li>
+        <li><a href="#limitations">Limitations and Honest Acknowledgments</a></li>
+        <li><a href="#future">Future Development</a></li>
+        <li><a href="#access">Research Data Access</a></li>
+        <li><a href="#changelog">Changelog</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. ABOUT -->
+    <div class="sec" id="about">
+      <h2>What This Document Is</h2>
+      <p>This document defines the methodology for the Menagerie Welfare Index (MWI), the care score system used throughout the Menagerie app to assess the welfare state of captive exotic animals.</p>
+      <p>It is written to serve three audiences simultaneously:</p>
+      <div class="audience-grid">
+        <div class="audience-item">
+          <strong>Keepers</strong>
+          <p>So they understand what the score means and trust it as a genuine reflection of their animal's welfare, not a gamification element.</p>
+        </div>
+        <div class="audience-item">
+          <strong>Researchers</strong>
+          <p>So they can evaluate the methodology, identify its limitations honestly, and determine whether the dataset is suitable for scientific use.</p>
+        </div>
+        <div class="audience-item">
+          <strong>Developers</strong>
+          <p>So the implementation is consistent, documented, and maintainable as the platform grows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. FOUNDATION -->
+    <div class="sec" id="foundation">
+      <h2>Theoretical Foundation</h2>
+      <p>The MWI is built on the Five Domains Model of Animal Welfare developed by David Mellor and colleagues, widely adopted in veterinary science, zoo management, and animal welfare research. The Five Domains are:</p>
+      <ol>
+        <li><strong>Nutrition</strong> — adequacy of food and water provision</li>
+        <li><strong>Environment</strong> — appropriateness of physical living conditions</li>
+        <li><strong>Health</strong> — absence of disease, injury, and physiological dysfunction</li>
+        <li><strong>Behavior</strong> — ability to express species-appropriate natural behaviors</li>
+        <li><strong>Mental State</strong> — the subjective experience of the animal, integrating the above four</li>
+      </ol>
+      <p>The MWI maps directly to this framework. Each domain is scored independently using available keeper log data, then combined into an overall welfare index score. The Mental State domain is treated as an emergent property of the other four rather than a directly measurable input, consistent with the original Five Domains framework.</p>
+      <div class="callout">
+        <p>This grounding in established peer-reviewed science means the MWI is not an invented metric. It is an implementation of a recognized framework using novel data collection methods.</p>
+      </div>
+    </div>
+
+    <!-- 3. POPULATION -->
+    <div class="sec" id="population">
+      <h2>Why This Matters Beyond Individual Animals</h2>
+      <p>The MWI is designed to function at two levels simultaneously.</p>
+      <p><strong>Individual level:</strong> A keeper understands how their specific animal is doing and what aspects of care need attention.</p>
+      <p><strong>Population level:</strong> Aggregated across all animals of a species in Menagerie, the MWI produces the first continuous longitudinal welfare dataset for captive exotic species ever assembled at scale.</p>
+      <p>Population-level MWI data can answer questions that have existed in herpetology for decades but have lacked sufficient data to address:</p>
+      <ul>
+        <li>What is the average welfare state of captive Argentine Black and White Tegus in North America?</li>
+        <li>Do tegus maintained at higher basking temperatures show better Nutrition domain scores?</li>
+        <li>How does welfare vary by keeper experience level, geographic region, or housing configuration?</li>
+        <li>What husbandry practices correlate with longevity?</li>
+      </ul>
+    </div>
+
+    <!-- 4. DOMAINS -->
+    <div class="sec" id="domains">
+      <h2>Domain Definitions and Data Mapping</h2>
+
+      <div class="domain-block">
+        <span class="domain-num">Domain 1</span>
+        <p class="domain-name">Nutrition</p>
+        <p><strong>What it measures:</strong> Whether the animal is receiving appropriate food and water in appropriate quantities and frequencies for its species and life stage.</p>
+        <span class="sub-label">Data inputs</span>
+        <ul>
+          <li>Feeding log frequency vs. species-appropriate schedule</li>
+          <li>Feeding response quality (eager / normal / reluctant / refused)</li>
+          <li>Weight trend over time (trajectory, not just recency of measurement)</li>
+          <li>Hydration logs</li>
+          <li>Supplement compliance logs</li>
+          <li>Active feeding strike flag</li>
+        </ul>
+        <span class="sub-label">Key principles</span>
+        <ul>
+          <li>Frequency is evaluated against species norms, not a universal standard. A tarantula not fed for three weeks is normal. A tegu not fed for three weeks during active season is a signal.</li>
+          <li>Feeding response is weighted heavily as a direct behavioral indicator of animal state, not just keeper behavior.</li>
+          <li>Weight trend matters more than weight measurement recency. A stable weight trend logged monthly is more meaningful than an unknown trend logged daily.</li>
+          <li>Brumation state modifies all Nutrition calculations. An animal in brumation has different nutritional requirements and the score reflects this.</li>
+        </ul>
+        <span class="sub-label">Species-type weighting examples</span>
+        <ul>
+          <li>Tegus, monitors, bearded dragons: high frequency feeding expected, response weighted heavily</li>
+          <li>Boas, ball pythons: lower frequency expected, refusal threshold higher before penalization</li>
+          <li>Tarantulas: very low frequency, long gaps normalized</li>
+          <li>Isopods, millipedes: colony-level provision tracking, not individual feeding logs</li>
+        </ul>
+      </div>
+
+      <div class="domain-block">
+        <span class="domain-num">Domain 2</span>
+        <p class="domain-name">Environment</p>
+        <p><strong>What it measures:</strong> Whether the animal's physical living conditions (temperature, humidity, lighting, enclosure size, substrate) are appropriate for the species.</p>
+        <span class="sub-label">Data inputs</span>
+        <ul>
+          <li>Temperature readings (basking, warm side, cool side, ambient) vs. species target ranges</li>
+          <li>Humidity readings vs. species target ranges</li>
+          <li>UVB bulb installation date and replacement schedule</li>
+          <li>Photoperiod configuration vs. species requirements</li>
+          <li>Sensor data (source: govee) weighted higher than manual logs for accuracy</li>
+          <li>Enclosure dimensions vs. species minimum requirements</li>
+        </ul>
+        <span class="sub-label">Key principles</span>
+        <ul>
+          <li>Sensor data is treated as higher-quality evidence than manual logs because it is continuous, timestamped, and not subject to keeper observation timing.</li>
+          <li>Temperature gradient completeness matters. An animal with only a basking reading and no cool side reading has an incomplete environment picture. The score reflects uncertainty, not failure.</li>
+          <li>Calibration-flagged sensor data (source: govee_calibration) is excluded from Environment domain scoring.</li>
+          <li>The domain evaluates conditions over time, not just the most recent reading. A single out-of-range reading is different from a week of out-of-range readings.</li>
+        </ul>
+        <div class="callout" style="margin-top:14px;">
+          <p><strong>The gradient completeness principle:</strong> For heliothermic species (tegus, monitor lizards, bearded dragons), a complete thermal gradient is a welfare requirement, not a preference. The Environment domain penalizes incomplete gradient data more heavily for these species than for thermoconforming species.</p>
+        </div>
+      </div>
+
+      <div class="domain-block">
+        <span class="domain-num">Domain 3</span>
+        <p class="domain-name">Health</p>
+        <p><strong>What it measures:</strong> The absence of disease, injury, and physiological dysfunction, and the presence of positive health indicators.</p>
+        <span class="sub-label">Data inputs</span>
+        <ul>
+          <li>Shed/molt quality and completion (complete, partial, stuck)</li>
+          <li>Presence of problem areas in sheds (retained eye caps, stuck shed on limbs)</li>
+          <li>Waste log consistency and frequency</li>
+          <li>Active health flags (infirmary status, feeding strike, injury)</li>
+          <li>Vet visit recency</li>
+          <li>Medication compliance</li>
+          <li>Body condition score when logged</li>
+          <li>Weight trend as a health indicator (distinct from its role in Nutrition)</li>
+        </ul>
+        <span class="sub-label">Key principles</span>
+        <ul>
+          <li>Shed quality is one of the strongest Health domain signals available in captive keeping. A complete clean shed indicates appropriate hydration, nutrition, and environmental conditions. Stuck shed is a multi-domain signal.</li>
+          <li>Waste consistency is a meaningful health indicator for many species. Unusual coloration, consistency, or frequency warrants attention.</li>
+          <li>The absence of vet visits is not penalized. Most healthy animals do not require veterinary care. The domain rewards documentation of vet visits when they occur.</li>
+          <li>Active infirmary status immediately reduces the Health domain score significantly.</li>
+        </ul>
+      </div>
+
+      <div class="domain-block">
+        <span class="domain-num">Domain 4</span>
+        <p class="domain-name">Behavior</p>
+        <p><strong>What it measures:</strong> Whether the animal is able to express species-appropriate natural behaviors and whether its behavioral patterns are consistent with positive welfare state.</p>
+        <span class="sub-label">Data inputs</span>
+        <ul>
+          <li>Activity logs (out-of-enclosure time, handling sessions)</li>
+          <li>Enrichment logs and engagement</li>
+          <li>Last seen / sighting frequency</li>
+          <li>Behavioral observations (for mammals: friendly, vocal, playful, irritable, etc.)</li>
+          <li>Feeding response as a behavioral indicator (also evaluated in Nutrition)</li>
+          <li>Brumation behavior appropriate to season</li>
+        </ul>
+        <span class="sub-label">Key principles</span>
+        <ul>
+          <li>Behavior is the most species-variable domain. What constitutes appropriate behavior for a whip spider is entirely different from a tegu.</li>
+          <li>Hiding is normal for most exotic species and is not penalized. Hiding combined with feeding refusal and weight loss is a compound signal.</li>
+          <li>Enrichment is weighted differently by species. Enrichment for a tegu is meaningful welfare data. Enrichment for a tarantula is minimal signal.</li>
+          <li>The Behavior domain is the weakest in the current implementation due to data sparsity. It improves significantly as keepers log more behavioral observations.</li>
+        </ul>
+      </div>
+
+      <div class="domain-block">
+        <span class="domain-num">Domain 5</span>
+        <p class="domain-name">Mental State</p>
+        <p><strong>What it measures:</strong> The subjective experiential state of the animal and whether it is experiencing positive or negative affect.</p>
+        <p><strong>Implementation approach:</strong> Mental state is not directly measurable through keeper logs. It is treated as an emergent integration of the other four domains, consistent with Mellor's original framework.</p>
+        <p>In the MWI, Mental State is represented by the overall score integration and is not calculated as a separate domain. Future development may incorporate proxies such as:</p>
+        <ul>
+          <li>Feeding response eagerness as a positive affect indicator</li>
+          <li>Behavioral diversity as an enrichment indicator</li>
+          <li>Consistency of activity patterns as a stability indicator</li>
+        </ul>
+        <p>This is an area where the MWI explicitly acknowledges its limitations and invites future methodological development.</p>
+      </div>
+    </div>
+
+    <!-- 5. WEIGHTING -->
+    <div class="sec" id="weighting">
+      <h2>Species-Specific Weighting Profiles</h2>
+      <p>Domain weights are not equal across species. The following profiles reflect the relative importance of each domain for major species categories in Menagerie. All profiles sum to 100%. These weights are initial estimates based on husbandry literature and expert keeper knowledge, designed to be updated as population-level data accumulates and empirical validation becomes possible.</p>
+
+      <div class="weight-grid">
+        <div class="wc">
+          <p class="wc-name">Heliothermic Lizards</p>
+          <span class="wc-species">Tegus, Monitor Lizards, Bearded Dragons, Uromastyx</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:56px"></div><span class="wr-pct">28%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:70px"></div><span class="wr-pct">35%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:24px"></div><span class="wr-pct">12%</span></div></div>
+          <p class="wc-note">Environment weighted highest because thermal gradient is physiologically critical for digestion, immune function, and all metabolic processes.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Colubrid and Boid Snakes</p>
+          <span class="wc-species">Boas, Ball Pythons, Kingsnakes, Corn Snakes</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:60px"></div><span class="wr-pct">30%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:64px"></div><span class="wr-pct">32%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:56px"></div><span class="wr-pct">28%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:20px"></div><span class="wr-pct">10%</span></div></div>
+          <p class="wc-note">Behavior weighted low as cryptic species with limited behavioral expression in captivity. Feeding response is the primary behavioral signal.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Arboreal Chameleons</p>
+          <span class="wc-species">Veiled, Panther, Jackson's</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:80px"></div><span class="wr-pct">40%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:20px"></div><span class="wr-pct">10%</span></div></div>
+          <p class="wc-note">Environment weighted highest of any profile. Chameleons are the most environmentally sensitive species in common captive keeping.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Tarantulas and Theraphosidae</p>
+          <span class="wc-species">&nbsp;</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:30px"></div><span class="wr-pct">15%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:70px"></div><span class="wr-pct">35%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:70px"></div><span class="wr-pct">35%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:30px"></div><span class="wr-pct">15%</span></div></div>
+          <p class="wc-note">Nutrition weighted lowest as tarantulas naturally fast for extended periods. Molt quality is the primary welfare indicator.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Amblypygi (Whip Spiders)</p>
+          <span class="wc-species">&nbsp;</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:40px"></div><span class="wr-pct">20%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:80px"></div><span class="wr-pct">40%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:60px"></div><span class="wr-pct">30%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:20px"></div><span class="wr-pct">10%</span></div></div>
+          <p class="wc-note">Humidity is the primary welfare variable. Behavioral assessment is limited by nocturnal, cryptic habits.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Myriapods</p>
+          <span class="wc-species">Giant African Millipedes, Centipedes</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:80px"></div><span class="wr-pct">40%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:20px"></div><span class="wr-pct">10%</span></div></div>
+          <p class="wc-note">Humidity and substrate depth are primary welfare variables for millipedes.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Amphibians</p>
+          <span class="wc-species">Tree Frogs, Axolotls, Dart Frogs</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:76px"></div><span class="wr-pct">38%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:54px"></div><span class="wr-pct">27%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:20px"></div><span class="wr-pct">10%</span></div></div>
+          <p class="wc-note">Water quality, humidity, and temperature are critical for amphibian welfare. Skin health serves as a proxy health indicator.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Domestic Mammals</p>
+          <span class="wc-species">Cats, Dogs in Multi-Species Collections</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:60px"></div><span class="wr-pct">30%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:30px"></div><span class="wr-pct">15%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:60px"></div><span class="wr-pct">30%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:50px"></div><span class="wr-pct">25%</span></div></div>
+          <p class="wc-note">Behavior weighted highest of any profile. Behavioral indicators are the primary welfare signal for cognitively complex mammals.</p>
+        </div>
+        <div class="wc">
+          <p class="wc-name">Exotic Mammals</p>
+          <span class="wc-species">Sugar Gliders, African Pygmy Hedgehogs</span>
+          <div class="wr"><span class="wr-label">Nutrition</span><div class="wr-right"><div class="wr-bar" style="width:56px"></div><span class="wr-pct">28%</span></div></div>
+          <div class="wr"><span class="wr-label">Environment</span><div class="wr-right"><div class="wr-bar" style="width:60px"></div><span class="wr-pct">30%</span></div></div>
+          <div class="wr"><span class="wr-label">Health</span><div class="wr-right"><div class="wr-bar" style="width:54px"></div><span class="wr-pct">27%</span></div></div>
+          <div class="wr"><span class="wr-label">Behavior</span><div class="wr-right"><div class="wr-bar" style="width:30px"></div><span class="wr-pct">15%</span></div></div>
+          <p class="wc-note">Environment more important than domestic mammals due to specific temperature and humidity requirements. Behavior more important than reptiles.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. DECAY -->
+    <div class="sec" id="decay">
+      <h2>Decay Curves</h2>
+      <p>Each domain score decays over time as care events age. Decay is not linear — recent events carry more weight than older ones. Decay rates are species-appropriate and state-aware.</p>
+
+      <h3>Decay Principles</h3>
+      <p><strong>Recency weighting:</strong> A feeding log from yesterday is weighted more heavily than one from two weeks ago, even if both represent appropriate care. This reflects that current welfare state is more relevant than historical welfare state.</p>
+      <p><strong>Species-appropriate decay rates:</strong> The decay rate reflects how quickly the absence of a care event becomes a welfare signal for that species.</p>
+
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Species Category</th>
+            <th>Feeding Decay Half-Life</th>
+            <th>Environment Decay Half-Life</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Active heliothermic lizards</td><td>4 days</td><td>2 days</td></tr>
+          <tr><td>Boid snakes</td><td>14 days</td><td>3 days</td></tr>
+          <tr><td>Colubrids</td><td>10 days</td><td>3 days</td></tr>
+          <tr><td>Tarantulas</td><td>21 days</td><td>5 days</td></tr>
+          <tr><td>Amblypygi</td><td>14 days</td><td>3 days</td></tr>
+          <tr><td>Millipedes</td><td>10 days</td><td>4 days</td></tr>
+          <tr><td>Amphibians</td><td>7 days</td><td>2 days</td></tr>
+          <tr><td>Domestic cats/dogs</td><td>2 days</td><td>7 days</td></tr>
+        </tbody>
+      </table>
+
+      <h3>State-Aware Decay Modification</h3>
+      <ul>
+        <li><strong>Brumation:</strong> Nutrition domain decay suspended. Environment decay continues but is evaluated against brumation-appropriate ranges. Health domain decay continues normally.</li>
+        <li><strong>Post-shed:</strong> Nutrition domain decay briefly suspended for 3 to 5 days, as post-shed feeding refusal is normal.</li>
+        <li><strong>Infirmary:</strong> Health domain score floors at a threshold value. Other domains continue normally.</li>
+        <li><strong>Gravid females:</strong> Nutrition and Behavior domain decay rates slowed, as gravid feeding reduction is normal.</li>
+      </ul>
+    </div>
+
+    <!-- 7. CONFIDENCE -->
+    <div class="sec" id="confidence">
+      <h2>The Confidence Indicator</h2>
+      <p>Every MWI score is accompanied by a confidence value representing how much data underlies the score. A score of 84 based on 847 data points over 18 months means something fundamentally different from a score of 84 based on 6 data points over 2 weeks. Both display as 84. The confidence indicator communicates the difference.</p>
+
+      <div class="conf-list">
+        <div class="conf-item">
+          <span class="conf-dot" style="background:var(--green)"></span>
+          <span class="conf-label">High confidence</span>
+          <span class="conf-desc">30+ data points, 90+ days of history, all four domains represented</span>
+        </div>
+        <div class="conf-item">
+          <span class="conf-dot" style="background:var(--amber)"></span>
+          <span class="conf-label">Moderate confidence</span>
+          <span class="conf-desc">15 to 30 data points, 30 to 90 days of history, at least three domains represented</span>
+        </div>
+        <div class="conf-item">
+          <span class="conf-dot" style="background:var(--red)"></span>
+          <span class="conf-label">Low confidence</span>
+          <span class="conf-desc">Fewer than 15 data points or fewer than 30 days of history</span>
+        </div>
+        <div class="conf-item">
+          <span class="conf-dot" style="background:var(--border)"></span>
+          <span class="conf-label">Insufficient data</span>
+          <span class="conf-desc">Fewer than 5 data points. Score not displayed; message shown instead.</span>
+        </div>
+      </div>
+
+      <p>In Advanced mode, confidence is displayed as a percentage alongside the score. In Standard mode, confidence is shown as a subtle indicator. In Simple mode, confidence is not displayed — new animals show "Getting to know [name]" instead of a low-confidence score.</p>
+    </div>
+
+    <!-- 8. DATA FLAGS -->
+    <div class="sec" id="flags">
+      <h2>Data Quality Flags</h2>
+      <p>Not all data is equal. The MWI tracks data quality through source flags on every log entry.</p>
+
+      <table class="dt">
+        <thead>
+          <tr><th>Source Flag</th><th>Meaning</th><th>Score Impact</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>manual</code></td><td>Keeper-entered observation</td><td>Full weight</td></tr>
+          <tr><td><code>govee</code></td><td>Sensor auto-log, validated</td><td>Full weight, higher precision for Environment domain</td></tr>
+          <tr><td><code>govee_calibration</code></td><td>Sensor data during calibration period</td><td>Excluded from score calculation</td></tr>
+          <tr><td><code>imported</code></td><td>Historical data imported from external source</td><td>Reduced weight (70% of manual)</td></tr>
+          <tr><td><code>demo</code></td><td>Demo account data</td><td>Excluded from all aggregate calculations</td></tr>
+        </tbody>
+      </table>
+
+      <p>Research queries automatically filter to <code>source IN ('manual', 'govee')</code> and exclude <code>is_demo = true</code> accounts.</p>
+    </div>
+
+    <!-- 9. COLLECTIVE -->
+    <div class="sec" id="collective">
+      <h2>The Collective Score</h2>
+      <p>The Collective Score is the population-level aggregate of individual MWI scores for a species.</p>
+      <p><strong>What it represents:</strong> The mean MWI score for all animals of a species in Menagerie, weighted by confidence level. Low-confidence individual scores contribute less to the aggregate than high-confidence scores.</p>
+      <p><strong>What it answers:</strong> "How well are captive [species] being kept, on average, by Menagerie keepers?"</p>
+      <p><strong>How it surfaces to keepers:</strong> In Advanced mode, a keeper can see their animal's score compared to the species population distribution. For example: "This animal scores 84. The Argentine Tegu population mean is 71. You are in the top 23% of tegu keepers by welfare score."</p>
+      <div class="callout">
+        <p>This is not gamification. It is genuine population context that makes the individual score meaningful.</p>
+      </div>
+      <p><strong>Minimum population threshold:</strong> Collective Scores are only displayed when a species has at least 50 animals with high-confidence scores in the database. Below this threshold, the score is not shown as there is insufficient data for a meaningful population baseline.</p>
+      <p><strong>Research use:</strong> Collective Scores and the underlying distribution data are the primary research output of the Menagerie dataset. They represent the first continuous longitudinal welfare assessment for captive exotic species at population scale.</p>
+    </div>
+
+    <!-- 10. DISPLAY -->
+    <div class="sec" id="display">
+      <h2>Display by Mode</h2>
+      <p>The MWI is presented differently depending on the keeper's selected experience level within the app.</p>
+      <div class="mode-grid">
+        <div class="mc">
+          <span class="mc-name">Simple Mode</span>
+          <ul>
+            <li>Large colored ring showing overall welfare state</li>
+            <li>Single word or short phrase: Thriving / Good / Needs attention / Getting to know [name]</li>
+            <li>No numerical score</li>
+            <li>No domain breakdown</li>
+            <li>One clear action prompt when a domain is significantly low</li>
+          </ul>
+        </div>
+        <div class="mc">
+          <span class="mc-name">Standard Mode</span>
+          <ul>
+            <li>Numerical score (0 to 100) with ring visualization</li>
+            <li>Domain breakdown showing four segments</li>
+            <li>Score trend over 30 days</li>
+            <li>Contextual interpretation for this animal right now</li>
+          </ul>
+        </div>
+        <div class="mc">
+          <span class="mc-name">Advanced Mode</span>
+          <ul>
+            <li>Full score with confidence percentage</li>
+            <li>Complete domain breakdown</li>
+            <li>Decay curve visualization per domain</li>
+            <li>Source flag distribution</li>
+            <li>Population comparison vs. species mean</li>
+            <li>Score velocity (7-day rate of change)</li>
+            <li>Raw component weights visible</li>
+            <li>Export button for complete dataset</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. LIMITATIONS -->
+    <div class="sec" id="limitations">
+      <h2>Limitations and Honest Acknowledgments</h2>
+      <p>The MWI is a tool, not a verdict. Several important limitations apply:</p>
+
+      <div class="lim">
+        <strong>Observer effect</strong>
+        <p>Keepers who use Menagerie more consistently produce higher-quality data and may show higher scores partly because of logging completeness rather than superior husbandry. The confidence indicator partially addresses this but does not eliminate it.</p>
+      </div>
+      <div class="lim">
+        <strong>Self-selection</strong>
+        <p>Keepers who use a care tracking app are likely more engaged than the general keeper population. MWI scores may not be representative of captive exotic animal welfare broadly. They represent the welfare of animals kept by engaged keepers who chose to track their care.</p>
+      </div>
+      <div class="lim">
+        <strong>Species profile accuracy</strong>
+        <p>The domain weightings are initial estimates based on husbandry literature and expert knowledge. They have not been empirically validated against health outcomes. Validation is a future research priority.</p>
+      </div>
+      <div class="lim">
+        <strong>Mental state uncertainty</strong>
+        <p>The Five Domains model acknowledges that mental state in non-human animals is difficult to assess. The MWI's treatment of mental state as emergent rather than directly measured is a principled choice but also a limitation.</p>
+      </div>
+      <div class="lim">
+        <strong>Data sparsity in Behavior domain</strong>
+        <p>Behavioral observations are the least consistently logged data type. The Behavior domain score is therefore the least reliable component of the MWI in most cases.</p>
+      </div>
+
+      <div class="callout" style="margin-top:20px;">
+        <p>These limitations are published alongside the methodology, not hidden. Scientific credibility requires honest accounting of what a dataset can and cannot tell you.</p>
+      </div>
+    </div>
+
+    <!-- 12. FUTURE -->
+    <div class="sec" id="future">
+      <h2>Future Development</h2>
+
+      <h3>Empirical Weight Validation</h3>
+      <p>As the dataset matures, domain weights can be tested against health outcomes. Do animals with consistently high Environment domain scores show fewer health events? Do animals with high Nutrition domain scores show better weight trajectories? This validation is the path from informed estimate to empirically grounded methodology.</p>
+
+      <h3>Veterinary Outcome Correlation</h3>
+      <p>With partner veterinary practices, MWI scores can be correlated with clinical health outcomes. This is the most rigorous validation pathway and the one most likely to result in peer-reviewed publication.</p>
+
+      <h3>Keeper Experience Adjustment</h3>
+      <p>A first-year keeper and a ten-year keeper keeping the same species under the same conditions may produce different log completeness. The MWI could eventually adjust for keeper experience level to isolate animal welfare signal from keeper behavior variation.</p>
+
+      <h3>Temporal Pattern Analysis</h3>
+      <p>The dataset will eventually support seasonal and longitudinal pattern analysis: how do species-level welfare scores vary by season, by geographic region, by keeper tenure? These patterns are research outputs, not app features.</p>
+
+      <h3>The HERP Lab Connection</h3>
+      <p>The HERP Laboratory at Eckerd College (<a href="https://herp.eckerd.edu" target="_blank" rel="noopener" style="color:var(--amber);">herp.eckerd.edu</a>) focuses on how captive environments affect reptile behavior and cognition. Their research questions and Menagerie's dataset are naturally complementary. A formal data sharing agreement would benefit both.</p>
+    </div>
+
+    <!-- 13. DATA ACCESS -->
+    <div class="sec" id="access">
+      <h2>Research Data Access</h2>
+      <p>Menagerie data is collected with keeper consent for research contribution. Keepers who opt in explicitly agree to their anonymized data being used for welfare research.</p>
+
+      <h3>What Is Available to Researchers</h3>
+      <ul>
+        <li>Anonymized individual animal welfare scores and component scores</li>
+        <li>Aggregated species-level statistics</li>
+        <li>Environmental parameter distributions by species</li>
+        <li>Feeding pattern data by species and season</li>
+        <li>Shed/molt outcome data correlated with environmental parameters</li>
+      </ul>
+
+      <h3>What Is Never Released</h3>
+      <ul>
+        <li>Keeper identity or contact information</li>
+        <li>Individual animal identity</li>
+        <li>Geographic data below regional level</li>
+        <li>Any data from keepers who have not opted in to research contribution</li>
+      </ul>
+    </div>
+
+    <!-- 14. CHANGELOG -->
+    <div class="sec" id="changelog">
+      <h2>Changelog</h2>
+      <div class="changelog">
+        <div class="cl-row hd"><span>Version</span><span>Date</span><span>Notes</span></div>
+        <div class="cl-row"><span>1.0</span><span>March 13, 2026</span><span>Initial specification</span></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <h2>Research Inquiries</h2>
+      <p>If you are a researcher, veterinarian, or institution interested in accessing Menagerie welfare data or discussing a formal partnership, please reach out directly.</p>
+      <a class="cta-btn" href="#" onclick="var e='hello'+'@'+'mymenagerie.pet'; window.location.href='mailto:'+e+'?subject=Research%20Inquiry'; return false;">Contact the Research Team</a>
+      <span class="cta-note">hello@mymenagerie.pet &nbsp;&middot;&nbsp; Subject: Research Inquiry</span>
+    </div>
+
+    <!-- LEGAL -->
+    <div class="legal">
+      <p>&copy; 2026 Madcow Venture Company. All rights reserved.</p>
+      <p>Menagerie Welfare Index and MWI are trademarks of Madcow Venture Company.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="foot-logo">Mena<span>gerie</span></p>
+    <p>
+      <a href="/">Home</a> &nbsp;&middot;&nbsp;
+      <a href="/research">Research</a> &nbsp;&middot;&nbsp;
+      <a href="/privacy">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="/terms">Terms of Service</a> &nbsp;&middot;&nbsp;
+      <a href="#" onclick="var e='hello'+'@'+'mymenagerie.pet'; window.location.href='mailto:'+e; return false;">Contact</a>
+    </p>
+    <p style="margin-top:6px; opacity:0.4;">&copy; 2026 Madcow Venture Company</p>
+  </footer>
+
+</body>
+</html>
