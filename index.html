@@ -4,122 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menagerie — Every Animal. One Home.</title>
-  <meta name="description" content="Menagerie is an exotic pet care tracking app for every species in your collection." />
+  <meta name="description" content="Menagerie is a care companion for exotic animal keepers. Track feeding, sheds, sensors, and welfare for every species you keep — from tegus to tarantulas." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦎</text></svg>" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #1A1A2E;
-      color: #f0f0f0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 24px;
-      text-align: center;
-    }
-    .icon { font-size: 72px; margin-bottom: 24px; line-height: 1; }
-    h1 { font-size: 48px; font-weight: 700; letter-spacing: -1px; color: #ffffff; margin-bottom: 12px; }
-    .tagline { font-size: 18px; color: #888; letter-spacing: 0.5px; margin-bottom: 48px; }
-    .badge {
-      display: inline-block;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 100px;
-      padding: 10px 24px;
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 48px;
-    }
-    .badge span { color: #6dbf6d; margin-right: 8px; }
-    .description {
-      max-width: 480px;
-      font-size: 17px;
-      line-height: 1.7;
-      color: #888;
-      margin-bottom: 56px;
-    }
-    .note { font-size: 13px; color: #444; margin-top: 16px; }
-    .animals {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 64px;
-      opacity: 0.4;
-    }
-    .animals span { font-size: 32px; }
-    footer {
-      padding: 32px 24px;
-      text-align: center;
-      border-top: 1px solid #1a1a1a;
-    }
-    footer p { font-size: 13px; color: #444; margin-bottom: 12px; }
-    footer a { color: #555; text-decoration: none; margin: 0 12px; font-size: 13px; transition: color 0.2s; }
-    footer a:hover { color: #888; }
-    @media (max-width: 480px) {
-      h1 { font-size: 36px; }
-    }
-
-    /* Brevo form overrides */
-    .sib-form { background: transparent !important; padding: 0 !important; }
-    #sib-container { background: transparent !important; border: none !important; max-width: 100% !important; }
-    #sib-form-container { display: flex; flex-direction: column; align-items: center; }
-    .sib-form-block { display: none !important; }
-    .sib-input { background: transparent !important; }
-    .form__entry { margin: 0 !important; }
-    .entry__label { display: none !important; }
-    .entry__specification { display: none !important; }
-    .entry__field input.input {
-      background: #1a1a1a !important;
-      border: 1px solid #2a2a2a !important;
-      border-radius: 12px !important;
-      padding: 14px 20px !important;
-      font-size: 15px !important;
-      color: #f0f0f0 !important;
-      width: 280px !important;
-      outline: none !important;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-    }
-    .entry__field input.input::placeholder { color: #444 !important; }
-    .sib-form-block__button {
-      background: #2a5c2a !important;
-      color: #fff !important;
-      border: none !important;
-      border-radius: 12px !important;
-      padding: 14px 28px !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
-      cursor: pointer !important;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-      margin-top: 0 !important;
-    }
-    .sib-form-block__button:hover { background: #357535 !important; }
-    #sib-form > div { padding: 0 !important; }
-    #sib-form {
-      display: flex; flex-wrap: wrap; gap: 12px;
-      justify-content: center; align-items: flex-start;
-    }
-    #success-message {
-      font-size: 14px !important; color: #6dbf6d !important;
-      background: transparent !important; border: none !important;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-    }
-    #error-message {
-      font-size: 14px !important; color: #ff6b6b !important;
-      background: transparent !important; border: none !important;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-    }
-    .sib-form-message-panel { max-width: 100% !important; display: none !important; }
-    .sib-form-message-panel.active { display: block !important; }
-  </style>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMVYPEZDB2"></script>
@@ -131,75 +17,718 @@
   </script>
 
   <!-- Brevo Forms CSS -->
-  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0D1310;
+      --glass: #141C17;
+      --edge: #263429;
+      --edge-soft: #1B2620;
+      --parchment: #EDE6D6;
+      --fieldnote: #92A294;
+      --fern: #8CAF87;
+      --basking: #E2A65B;
+      --basking-deep: #B87F3C;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Schibsted Grotesk', -apple-system, sans-serif;
+      --mono: 'Spline Sans Mono', 'SF Mono', monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      background: var(--ink);
+      color: var(--parchment);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+    /* film grain */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    }
+    ::selection { background: rgba(226,166,91,0.35); }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--basking);
+      outline-offset: 3px; border-radius: 4px;
+    }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+    /* ---------- nav ---------- */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 0;
+    }
+    .wordmark {
+      font-family: var(--serif);
+      font-size: 26px; letter-spacing: 0.01em;
+      color: var(--parchment); text-decoration: none;
+    }
+    .wordmark span { color: var(--basking); }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .status-pip {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fern);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .status-pip::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--fern);
+      box-shadow: 0 0 8px rgba(140,175,135,0.9);
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .nav-cta {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--basking); text-decoration: none;
+      border: 1px solid var(--edge); border-radius: 100px; padding: 9px 18px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .nav-cta:hover { border-color: var(--basking-deep); background: rgba(226,166,91,0.06); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      display: grid; grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px; align-items: center;
+      padding: 64px 0 88px;
+      position: relative;
+    }
+    /* heat-lamp glow — positioned in-bounds, shifted via transform so it never widens the page */
+    .hero::before {
+      content: ""; position: absolute; z-index: 0;
+      top: -120px; right: 0; width: 640px; height: 640px;
+      transform: translateX(28%);
+      background: radial-gradient(circle, rgba(226,166,91,0.13) 0%, rgba(226,166,91,0.04) 40%, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--fieldnote);
+      margin-bottom: 22px;
+    }
+    .eyebrow em { font-style: normal; color: var(--basking); }
+    h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(48px, 6.4vw, 76px);
+      line-height: 1.02; letter-spacing: -0.01em;
+      margin-bottom: 26px;
+    }
+    h1 .accent { font-style: italic; color: var(--basking); }
+    .hero-sub {
+      font-size: 17.5px; color: var(--fieldnote); max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .hero-sub strong { color: var(--parchment); font-weight: 500; }
+
+    .signup-note {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+      color: var(--fieldnote); margin-top: 16px; opacity: 0.8;
+    }
+
+    /* ---------- MWI card (mirrors the real app score card) ---------- */
+    :root { --app-green: #3ECF6E; --app-yellow: #E8C14A; }
+    .mwi-card {
+      position: relative; z-index: 2;
+      background: linear-gradient(160deg, var(--glass) 0%, #0F1611 100%);
+      border: 1px solid var(--edge);
+      border-radius: 20px;
+      padding: 24px 24px 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(237,230,214,0.05);
+    }
+    .mwi-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 18px;
+    }
+    .mwi-label {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--fieldnote);
+    }
+    .mwi-subject { text-align: right; }
+    .mwi-subject .name { font-family: var(--sans); font-weight: 600; font-size: 14px; }
+    .mwi-subject .latin { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--fieldnote); }
+
+    /* inner score panel — green border, wave-gradient base, like the app */
+    .score-panel {
+      position: relative;
+      border: 1px solid rgba(62,207,110,0.45);
+      border-radius: 16px;
+      padding: 22px 18px 26px;
+      background: #0E1511;
+      overflow: hidden;
+      box-shadow: 0 0 24px rgba(62,207,110,0.08) inset;
+    }
+    .score-panel::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56px;
+      background: linear-gradient(to top, rgba(62,207,110,0.28), rgba(62,207,110,0.0));
+      pointer-events: none;
+    }
+    .score-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; position: relative; z-index: 1;
+    }
+    .side-stat { text-align: center; flex: 1; min-width: 0; }
+    .side-stat .val { font-family: var(--sans); font-weight: 600; font-size: 24px; color: var(--app-green); }
+    .side-stat .lbl { font-family: var(--sans); font-size: 12.5px; color: var(--fieldnote); margin-top: 2px; }
+    .ring-box { position: relative; width: 148px; height: 148px; flex-shrink: 0; }
+    .ring-box svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-track { fill: none; stroke: #1D2A21; stroke-width: 8; }
+    .ring-fill {
+      fill: none; stroke: var(--app-green); stroke-width: 8; stroke-linecap: round;
+      stroke-dasharray: 402.1; stroke-dashoffset: 402.1;
+      animation: ringdraw 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+      filter: drop-shadow(0 0 7px rgba(62,207,110,0.5));
+    }
+    @keyframes ringdraw { to { stroke-dashoffset: 64.3; } } /* 84% */
+    .ring-center {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .ring-score { font-family: var(--sans); font-weight: 600; font-size: 42px; line-height: 1; color: var(--app-green); }
+    .ring-word { font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--app-green); margin-top: 4px; }
+    .ring-sub { font-family: var(--sans); font-size: 11.5px; color: var(--fieldnote); margin-top: 3px; }
+
+    /* domain rows — left color borders, like the app */
+    .domains { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+    .domain {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #121A15; border-radius: 10px;
+      border-left: 3px solid var(--app-green);
+      padding: 10px 14px;
+    }
+    .domain.watch { border-left-color: var(--app-yellow); }
+    .domain-name {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fieldnote);
+    }
+    .domain-val { font-family: var(--sans); font-weight: 500; font-size: 13.5px; color: var(--parchment); }
+    .domain.watch .domain-val { color: var(--app-yellow); }
+
+    .mwi-log {
+      margin-top: 24px; padding-top: 18px;
+      border-top: 1px solid var(--edge-soft);
+      min-height: 44px;
+    }
+    .log-entry {
+      display: none; align-items: baseline; gap: 12px;
+      font-size: 13.5px; color: var(--fieldnote);
+      animation: logfade 0.5s ease;
+    }
+    .log-entry.active { display: flex; }
+    @keyframes logfade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    .log-time { font-family: var(--mono); font-size: 11px; color: var(--basking-deep); letter-spacing: 0.06em; flex-shrink: 0; }
+    .log-text em { font-style: normal; color: var(--parchment); }
+
+    /* ---------- species marquee ---------- */
+    .specimens {
+      border-top: 1px solid var(--edge-soft);
+      border-bottom: 1px solid var(--edge-soft);
+      overflow: hidden; padding: 20px 0;
+      position: relative; z-index: 2;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .specimen-track {
+      display: flex; gap: 56px; width: max-content;
+      animation: drift 46s linear infinite;
+    }
+    @keyframes drift { to { transform: translateX(-50%); } }
+    .specimen { display: flex; flex-direction: column; white-space: nowrap; }
+    .specimen .latin { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--parchment); }
+    .specimen .common {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--fieldnote); margin-top: 3px;
+    }
+
+    /* ---------- app showcase ---------- */
+    .showcase { padding: 96px 0 40px; position: relative; z-index: 2; }
+    .showcase-head { text-align: center; margin-bottom: 52px; }
+    .showcase-head .sect-eyebrow { margin-bottom: 14px; }
+    .showcase-head h2 { margin-left: auto; margin-right: auto; }
+    .phones {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 36px; align-items: start; max-width: 980px; margin: 0 auto;
+    }
+    .phone {
+      background: #0A0F0C;
+      border: 1px solid var(--edge);
+      border-radius: 30px;
+      padding: 10px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(237,230,214,0.05);
+      transition: transform 0.3s ease;
+    }
+    .phone:hover { transform: translateY(-6px); }
+    .phone:nth-child(2) { margin-top: 44px; }
+    .phone img {
+      display: block; width: 100%; height: auto;
+      border-radius: 21px;
+    }
+    .phone-caption {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--fieldnote);
+      text-align: center; margin-top: 14px; padding-bottom: 4px;
+    }
+
+    /* Five Domains split: copy + real MWI screen */
+    .mwi-split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px; align-items: center; }
+    .mwi-split .phone { max-width: 300px; justify-self: center; }
+
+    /* ---------- sections ---------- */
+    section { padding: 96px 0; position: relative; z-index: 2; }
+    .sect-eyebrow {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--basking); margin-bottom: 18px;
+    }
+    h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(32px, 4vw, 46px); line-height: 1.1;
+      max-width: 620px; margin-bottom: 20px;
+    }
+    .sect-sub { color: var(--fieldnote); max-width: 560px; font-size: 16.5px; }
+
+    /* five domains */
+    .domain-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--edge-soft);
+      border: 1px solid var(--edge-soft); border-radius: 16px;
+      overflow: hidden; margin-top: 52px;
+    }
+    .domain-card { background: var(--ink); padding: 28px 24px 30px; transition: background 0.3s; }
+    .domain-card:hover { background: var(--glass); }
+    .domain-num {
+      font-family: var(--serif); font-style: italic; font-size: 15px;
+      color: var(--basking-deep); margin-bottom: 14px;
+    }
+    .domain-card h3 { font-family: var(--sans); font-weight: 600; font-size: 16px; margin-bottom: 10px; }
+    .domain-card p { font-size: 14px; color: var(--fieldnote); line-height: 1.55; }
+
+    /* features */
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 44px 40px; margin-top: 56px;
+    }
+    .feature h3 {
+      font-family: var(--sans); font-weight: 600; font-size: 16.5px;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+    }
+    .feature .glyph {
+      font-family: var(--mono); font-size: 12px; color: var(--basking);
+      border: 1px solid var(--edge); border-radius: 7px;
+      width: 28px; height: 28px; display: inline-flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .feature p { font-size: 14.5px; color: var(--fieldnote); }
+
+    /* founder note */
+    .founder {
+      background: var(--glass);
+      border: 1px solid var(--edge-soft); border-radius: 20px;
+      padding: 56px clamp(28px, 6vw, 80px);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .founder::before {
+      content: "\201C"; position: absolute;
+      top: -30px; left: 24px;
+      font-family: var(--serif); font-size: 200px;
+      color: var(--basking); opacity: 0.07; line-height: 1;
+    }
+    .founder blockquote {
+      font-family: var(--serif); font-size: clamp(22px, 2.8vw, 30px);
+      line-height: 1.45; max-width: 720px; margin: 0 auto 28px;
+    }
+    .founder blockquote .accent { font-style: italic; color: var(--basking); }
+    .founder cite {
+      font-family: var(--mono); font-style: normal; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--fieldnote);
+    }
+
+    /* final CTA */
+    .cta-band { text-align: center; padding-bottom: 120px; }
+    .cta-band h2 { margin-left: auto; margin-right: auto; max-width: none; }
+    .cta-band .sect-sub { margin: 0 auto 36px; }
+    .cta-btn {
+      display: inline-block; font-family: var(--sans); font-weight: 600;
+      font-size: 15.5px; color: var(--ink); text-decoration: none;
+      background: var(--basking); border-radius: 12px; padding: 15px 34px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 30px rgba(226,166,91,0.22);
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(226,166,91,0.3); }
+
+    /* footer */
+    footer {
+      border-top: 1px solid var(--edge-soft);
+      padding: 40px 0 48px; position: relative; z-index: 2;
+    }
+    .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
+    .foot-row p { font-family: var(--mono); font-size: 11.5px; color: var(--fieldnote); opacity: 0.7; }
+    .foot-links a {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+      color: var(--fieldnote); text-decoration: none; margin-left: 22px;
+      transition: color 0.2s;
+    }
+    .foot-links a:hover { color: var(--basking); }
+
+    /* ---------- Brevo overrides ---------- */
+    .sib-form { background: transparent !important; padding: 0 !important; }
+    #sib-container { background: transparent !important; border: none !important; max-width: 100% !important; padding: 0 !important; }
+    #sib-form-container { display: flex; flex-direction: column; align-items: flex-start; }
+    .sib-form-block { padding: 0 !important; }
+    .sib-input { background: transparent !important; }
+    .form__entry { margin: 0 !important; }
+    .entry__label, .entry__specification { display: none !important; }
+    .entry__field { border: none !important; background: transparent !important; }
+    .entry__field input.input {
+      background: rgba(20,28,23,0.9) !important;
+      border: 1px solid var(--edge) !important;
+      border-radius: 12px !important;
+      padding: 14px 20px !important;
+      font-size: 15px !important;
+      color: var(--parchment) !important;
+      width: 280px !important;
+      outline: none !important;
+      font-family: var(--sans) !important;
+      transition: border-color 0.25s !important;
+    }
+    .entry__field input.input:focus { border-color: var(--basking-deep) !important; }
+    .entry__field input.input::placeholder { color: #5C6A5F !important; }
+    .sib-form-block__button {
+      background: var(--basking) !important;
+      color: var(--ink) !important;
+      border: none !important;
+      border-radius: 12px !important;
+      padding: 14px 28px !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      font-family: var(--sans) !important;
+      margin-top: 0 !important;
+      transition: filter 0.2s !important;
+    }
+    .sib-form-block__button:hover { filter: brightness(1.08) !important; }
+    #sib-form > div { padding: 0 !important; }
+    #sib-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+    #success-message {
+      font-size: 14px !important; color: var(--fern) !important;
+      background: transparent !important; border: none !important;
+      font-family: var(--sans) !important;
+    }
+    #error-message {
+      font-size: 14px !important; color: #E58C8C !important;
+      background: transparent !important; border: none !important;
+      font-family: var(--sans) !important;
+    }
+    .sib-form-message-panel { max-width: 100% !important; display: none !important; margin-bottom: 10px !important; }
+    .sib-form-message-panel.active { display: block !important; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; gap: 48px; padding: 40px 0 64px; }
+      .domain-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .phones { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .phone:nth-child(2) { margin-top: 24px; }
+      .mwi-split { grid-template-columns: 1fr; gap: 44px; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 64px 0; }
+      .mwi-card { padding: 20px 16px 16px; }
+      .ring-box { width: 118px; height: 118px; }
+      .ring-score { font-size: 32px; }
+      .ring-word { font-size: 11.5px; }
+      .ring-sub { font-size: 10px; }
+      .side-stat .val { font-size: 19px; }
+      .side-stat .lbl { font-size: 11px; }
+      .domain-grid, .feature-grid { grid-template-columns: 1fr; }
+      #sib-form-container { align-items: stretch; }
+      .entry__field input.input { width: 100% !important; }
+      #sib-form { flex-direction: column; }
+      .sib-form-block__button { width: 100% !important; }
+      .nav-right .status-pip { display: none; }
+      .foot-row { flex-direction: column; text-align: center; }
+      .foot-links a { margin: 0 10px; }
+      .hero::before { width: 380px; height: 380px; transform: translateX(15%); }
+      .phones { grid-template-columns: 1fr; max-width: 300px; }
+      .phone:nth-child(2) { margin-top: 0; }
+      .showcase { padding: 64px 0 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .specimen-track { animation: none; }
+      .ring-fill { animation: none; stroke-dashoffset: 72.4; }
+      .status-pip::before { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <div class="icon">🦎</div>
-    <h1>Menagerie</h1>
-    <p class="tagline">Every animal. One home.</p>
-    <div class="badge"><span>●</span> Arriving March 2026</div>
-    <p class="description">
-      I started tracking my tegu. Then my boa, my tarantula, my cats, my millipede.
-      So I built something that could handle all of them, and it turned out pretty cool.
-    </p>
 
-    <div class="sib-form">
-      <div id="sib-form-container" class="sib-form-container">
-        <div id="error-message" class="sib-form-message-panel">
-          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-            <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
-          </div>
-        </div>
-        <div id="success-message" class="sib-form-message-panel">
-          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-            <span class="sib-form-message-panel__inner-text">You&#039;re on the list. We&#039;ll send you a note when Menagerie launches. (no spam, I promise)</span>
-          </div>
-        </div>
-        <div id="sib-container" class="sib-container--large sib-container--vertical">
-          <form id="sib-form" method="POST" action="https://88721a85.sibforms.com/serve/MUIFAL2VnOfAfvEzNJlnDU-PGxj72OEtXCVCIhGJSDjjSsiTY3paNkkTBoZDnv51HiUpqY2r3h7xrLCRjGo6z5MhD6V6sSiV85CyhRpjiM12Qj5PflyY2kzyrYY48BTgNkiqRcqYad0KDJREZNGweYk99IXlXdM7AKvALOf90tfdB8mw60hGM71dlR-icPdypSMgRtw6ArKv54IFmA==" data-type="subscription">
-            <div>
-              <div class="sib-input sib-form-block">
-                <div class="form__entry entry_block">
-                  <div class="form__label-row">
-                    <div class="entry__field">
-                      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="your@email.com" data-required="true" required />
+  <div class="wrap">
+    <nav>
+      <a class="wordmark" href="/">Menagerie<span>.</span></a>
+      <div class="nav-right">
+        <span class="status-pip">In beta</span>
+        <a class="nav-cta" href="#notify">Get notified</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">A care companion for exotic keepers · <em>Launching Autumn 2026</em></p>
+        <h1>Every animal.<br><span class="accent">One home.</span></h1>
+        <p class="hero-sub">
+          Menagerie keeps the living record of everything you keep — feedings, sheds,
+          weights, sensor readings, even the <strong>moon phase and barometric pressure</strong>
+          stamped on every log. From tegus to tarantulas to the cats who supervise.
+        </p>
+        <div class="sib-form" id="notify">
+          <div id="sib-form-container" class="sib-form-container">
+            <div id="error-message" class="sib-form-message-panel">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+              </div>
+            </div>
+            <div id="success-message" class="sib-form-message-panel">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                <span class="sib-form-message-panel__inner-text">You&#039;re on the list. We&#039;ll send you a note when Menagerie launches. (no spam, I promise)</span>
+              </div>
+            </div>
+            <div id="sib-container" class="sib-container--large sib-container--vertical">
+              <form id="sib-form" method="POST" action="https://88721a85.sibforms.com/serve/MUIFAL2VnOfAfvEzNJlnDU-PGxj72OEtXCVCIhGJSDjjSsiTY3paNkkTBoZDnv51HiUpqY2r3h7xrLCRjGo6z5MhD6V6sSiV85CyhRpjiM12Qj5PflyY2kzyrYY48BTgNkiqRcqYad0KDJREZNGweYk99IXlXdM7AKvALOf90tfdB8mw60hGM71dlR-icPdypSMgRtw6ArKv54IFmA==" data-type="subscription">
+                <div>
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row">
+                        <div class="entry__field">
+                          <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="your@email.com" data-required="true" required />
+                        </div>
+                      </div>
+                      <label class="entry__error entry__error--primary"></label>
                     </div>
                   </div>
-                  <label class="entry__error entry__error--primary"></label>
                 </div>
+                <div>
+                  <div class="sib-form-block">
+                    <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                      <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
+                        <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                      </svg>
+                      Notify me
+                    </button>
+                  </div>
+                </div>
+                <input type="text" name="email_address_check" value="" class="input--hidden">
+                <input type="hidden" name="locale" value="en">
+              </form>
+            </div>
+          </div>
+        </div>
+        <p class="signup-note">No spam. Just a note when it launches.</p>
+      </div>
+
+      <div class="mwi-card" aria-label="Example wellness score from the Menagerie app">
+        <div class="mwi-head">
+          <span class="mwi-label">Menagerie Wellness Index</span>
+          <div class="mwi-subject">
+            <div class="name">Waffles</div>
+            <div class="latin">Salvator merianae</div>
+          </div>
+        </div>
+        <div class="score-panel">
+          <div class="score-row">
+            <div class="side-stat">
+              <div class="val">104°</div>
+              <div class="lbl">Basking</div>
+            </div>
+            <div class="ring-box">
+              <svg width="148" height="148" viewBox="0 0 148 148">
+                <circle class="ring-track" cx="74" cy="74" r="64"/>
+                <circle class="ring-fill" cx="74" cy="74" r="64"/>
+              </svg>
+              <div class="ring-center">
+                <div class="ring-score">84</div>
+                <div class="ring-word">Balanced</div>
+                <div class="ring-sub">Fed yesterday</div>
               </div>
             </div>
-            <div>
-              <div class="sib-form-block">
-                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
-                  <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
-                    <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
-                  </svg>
-                  Notify Me
-                </button>
-              </div>
+            <div class="side-stat">
+              <div class="val">58%</div>
+              <div class="lbl">Humidity</div>
             </div>
-            <input type="text" name="email_address_check" value="" class="input--hidden">
-            <input type="hidden" name="locale" value="en">
-          </form>
+          </div>
+        </div>
+        <div class="domains">
+          <div class="domain"><span class="domain-name">Nutrition</span><span class="domain-val">Thriving</span></div>
+          <div class="domain"><span class="domain-name">Environment</span><span class="domain-val">Balanced</span></div>
+          <div class="domain"><span class="domain-name">Health</span><span class="domain-val">Balanced</span></div>
+          <div class="domain watch"><span class="domain-name">Behavior</span><span class="domain-val">Stable</span></div>
+        </div>
+        <div class="mwi-log">
+          <div class="log-entry active">
+            <span class="log-time">06:31</span>
+            <span class="log-text">Basking lamp on · surface <em>123°F</em></span>
+          </div>
+          <div class="log-entry">
+            <span class="log-time">08:12</span>
+            <span class="log-text">Fed · response: <em>eager</em></span>
+          </div>
+          <div class="log-entry">
+            <span class="log-time">09:40</span>
+            <span class="log-text">🌗 Waning gibbous · <em>29.87 inHg</em></span>
+          </div>
+          <div class="log-entry">
+            <span class="log-time">14:05</span>
+            <span class="log-text">Shed complete · <em>no problem areas</em></span>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
+  </div>
 
-    <p class="note">No spam. Just a note when it launches.</p>
-    <div class="animals">
-      <span>🦎</span><span>🐍</span><span>🕷️</span><span>🐈</span><span>🦂</span><span>🐛</span>
+  <div class="specimens" aria-hidden="true">
+    <div class="specimen-track" id="specimenTrack">
+      <div class="specimen"><span class="latin">Salvator merianae</span><span class="common">Argentine B&amp;W Tegu</span></div>
+      <div class="specimen"><span class="latin">Boa constrictor</span><span class="common">Boa Constrictor</span></div>
+      <div class="specimen"><span class="latin">Lampropeltis californiae</span><span class="common">California Kingsnake</span></div>
+      <div class="specimen"><span class="latin">Aphonopelma chalcodes</span><span class="common">Arizona Blonde Tarantula</span></div>
+      <div class="specimen"><span class="latin">Amblypygi</span><span class="common">Whip Spider</span></div>
+      <div class="specimen"><span class="latin">Archispirostreptus gigas</span><span class="common">Giant African Millipede</span></div>
+      <div class="specimen"><span class="latin">Porcellionides pruinosus</span><span class="common">Powder Orange Isopod</span></div>
+      <div class="specimen"><span class="latin">Felis catus</span><span class="common">The Supervisors</span></div>
     </div>
-  </main>
+  </div>
+
+  <div class="wrap">
+    <section class="showcase">
+      <div class="showcase-head">
+        <p class="sect-eyebrow">The app, as it actually is</p>
+        <h2>Your whole collection, one glance.</h2>
+      </div>
+      <div class="phones">
+        <div class="phone">
+          <img src="assets/screen-home.webp" alt="Menagerie home screen: ten animals, all fed, today's care complete" loading="lazy">
+          <p class="phone-caption">Home · Today's Care</p>
+        </div>
+        <div class="phone">
+          <img src="assets/screen-collection.webp" alt="The Animals screen showing a photo grid of a mixed collection: boa, tegu, kingsnake, whip spider, tarantula, and cat" loading="lazy">
+          <p class="phone-caption">Every Animal · One Home</p>
+        </div>
+        <div class="phone">
+          <img src="assets/screen-environment.webp" alt="Environment screen with live sensor readings and a 24-hour temperature trend graph" loading="lazy">
+          <p class="phone-caption">Live Sensors · 24h Trends</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="sect-eyebrow">The Menagerie Wellness Index</p>
+      <div class="mwi-split">
+        <div>
+          <h2>A score that means something.</h2>
+          <p class="sect-sub">
+            Built on the Five Domains model — the animal welfare framework used in zoos and
+            veterinary science — the Wellness Index reads your care logs and sensor data to
+            show how each animal is actually doing. Not a streak counter. A welfare instrument.
+          </p>
+        </div>
+        <div class="phone">
+          <img src="assets/screen-mwi.webp" alt="Wellness Index screen for Waffles: 84 Balanced, with Nutrition, Environment, Health, and Behavior domain scores" loading="lazy">
+          <p class="phone-caption">Wellness Index · Waffles</p>
+        </div>
+      </div>
+      <div class="domain-grid">
+        <div class="domain-card">
+          <div class="domain-num">i.</div>
+          <h3>Nutrition</h3>
+          <p>Feeding frequency against species norms, feeding response, weight trend. A tarantula fasting three weeks is normal. A tegu isn't.</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-num">ii.</div>
+          <h3>Environment</h3>
+          <p>Temperature gradients, humidity, UVB age, photoperiod — with continuous sensor data weighted above manual logs.</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-num">iii.</div>
+          <h3>Health</h3>
+          <p>Shed and molt quality, waste consistency, medication compliance, body condition. A clean shed says a lot.</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-num">iv.</div>
+          <h3>Behavior</h3>
+          <p>Activity, enrichment, sightings, seasonal patterns — weighted for what's natural per species. Hiding isn't penalized.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top: 0;">
+      <p class="sect-eyebrow">Built for the way keepers actually keep</p>
+      <h2>Tracks things you never thought to track.</h2>
+      <div class="feature-grid">
+        <div class="feature">
+          <h3><span class="glyph">◉</span> Sensors that log for you</h3>
+          <p>Govee and SwitchBot integration streams temperature and humidity straight into each enclosure's record. No more clipboard checks.</p>
+        </div>
+        <div class="feature">
+          <h3><span class="glyph">☾</span> Sky stamps on every log</h3>
+          <p>Moon phase, barometric pressure, and geomagnetic activity recorded automatically. Patterns you'd never catch by hand.</p>
+        </div>
+        <div class="feature">
+          <h3><span class="glyph">❋</span> Living terrariums</h3>
+          <p>Bioactive enclosures tracked as ecosystems — establishment phases, seasons, provisions, plants, and the microfauna underneath it all.</p>
+        </div>
+        <div class="feature">
+          <h3><span class="glyph">⌂</span> The whole household</h3>
+          <p>Share care with family and petsitters. Everyone logs to the same record, every animal stays covered.</p>
+        </div>
+        <div class="feature">
+          <h3><span class="glyph">✳</span> Every species</h3>
+          <p>Reptiles, arachnids, myriapods, amphibians, mammals — species-aware care logic for each. One app for the entire collection.</p>
+        </div>
+        <div class="feature">
+          <h3><span class="glyph">◬</span> Citizen science</h3>
+          <p>Opt in to contribute anonymized care data to the first longitudinal welfare dataset for captive exotic species.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top: 0;">
+      <div class="founder">
+        <blockquote>
+          "I started tracking my tegu. Then my boa, my tarantula, my cats, my millipede.
+          So I built something that could handle <span class="accent">all of them</span> —
+          and it turned out pretty cool."
+        </blockquote>
+        <cite>— Jason · Madcow Venture Company</cite>
+      </div>
+    </section>
+
+    <section class="cta-band" style="padding-top: 0;">
+      <p class="sect-eyebrow">First day of autumn. Fitting, right?</p>
+      <h2>Be there on day one.</h2>
+      <p class="sect-sub">Menagerie is in beta now and launching Autumn 2026. Leave your email and you'll get exactly one note when it's live.</p>
+      <a class="cta-btn" href="#notify">Notify me at launch</a>
+    </section>
+  </div>
 
   <footer>
-    <p>© 2026 Madcow Venture Company. All rights reserved.</p>
-    <div>
-      <a href="/research">Research</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
-      <a href="mailto:hello@mymenagerie.pet">Contact</a>
+    <div class="wrap foot-row">
+      <p>© 2026 Madcow Venture Company. All rights reserved.</p>
+      <div class="foot-links">
+        <a href="/research">Research</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="mailto:hello@mymenagerie.pet">Contact</a>
+      </div>
     </div>
   </footer>
 
@@ -216,5 +745,28 @@
     var AUTOHIDE = Boolean(0);
   </script>
   <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
+  <script>
+    // domain bars + marquee duplication + log ticker
+    document.addEventListener('DOMContentLoaded', function () {
+      requestAnimationFrame(function(){ document.body.classList.add('loaded'); });
+
+      // duplicate marquee content for seamless loop
+      var track = document.getElementById('specimenTrack');
+      track.innerHTML += track.innerHTML;
+
+      // cycle log entries
+      var entries = document.querySelectorAll('.log-entry');
+      var idx = 0;
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced && entries.length > 1) {
+        setInterval(function () {
+          entries[idx].classList.remove('active');
+          idx = (idx + 1) % entries.length;
+          entries[idx].classList.add('active');
+        }, 3800);
+      }
+    });
+  </script>
 </body>
 </html>
