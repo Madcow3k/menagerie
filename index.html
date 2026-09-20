@@ -500,7 +500,7 @@
             </div>
             <div id="success-message" class="sib-form-message-panel">
               <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-                <span class="sib-form-message-panel__inner-text">You&#039;re on the list. We&#039;ll send you a note when Menagerie launches. (no spam, I promise)</span>
+                <span class="sib-form-message-panel__inner-text">You&#039;re on the list. I&#039;ll send you a note when Menagerie launches. (no spam, I promise)</span>
               </div>
             </div>
             <div id="sib-container" class="sib-container--large sib-container--vertical">
@@ -527,6 +527,7 @@
                     </button>
                   </div>
                 </div>
+                <div class="g-recaptcha-v3" data-sitekey="6LezEsYtAAAAAMytpyenMGjke3KgiaoYFiTzCg29" style="display: none"></div>
                 <input type="text" name="email_address_check" value="" class="input--hidden">
                 <input type="hidden" name="locale" value="en">
               </form>
@@ -713,9 +714,9 @@
     </section>
 
     <section class="cta-band" style="padding-top: 0;">
-      <p class="sect-eyebrow">First day of autumn. Fitting, right?</p>
+      <p class="sect-eyebrow">Built for keepers, by a keeper</p>
       <h2>Be there on day one.</h2>
-      <p class="sect-sub">Menagerie is in beta now and launching Autumn 2026. Leave your email and you'll get exactly one note when it's live.</p>
+      <p class="sect-sub">Menagerie is in closed beta with a small group of keepers and launching soon. Leave your email and you'll get exactly one note when it's live.</p>
       <a class="cta-btn" href="#notify">Notify me at launch</a>
     </section>
   </div>
@@ -742,9 +743,10 @@
     window.translation = {
       common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected' }
     };
-    var AUTOHIDE = Boolean(0);
+    var AUTOHIDE = Boolean(1);
   </script>
   <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LezEsYtAAAAAMytpyenMGjke3KgiaoYFiTzCg29&hl=en" async defer></script>
 
   <script>
     // domain bars + marquee duplication + log ticker
