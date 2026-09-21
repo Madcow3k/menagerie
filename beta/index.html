@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Menagerie Beta</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦎</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0D1310;
+      --glass: #141C17;
+      --edge: #263429;
+      --edge-soft: #1B2620;
+      --parchment: #EDE6D6;
+      --fieldnote: #92A294;
+      --fern: #8CAF87;
+      --basking: #E2A65B;
+      --basking-deep: #B87F3C;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Schibsted Grotesk', -apple-system, sans-serif;
+      --mono: 'Spline Sans Mono', 'SF Mono', monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: clip; }
+    body {
+      background: var(--ink);
+      color: var(--parchment);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      min-height: 100vh;
+    }
+    /* film grain */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    }
+    ::selection { background: rgba(226,166,91,0.35); }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--basking);
+      outline-offset: 3px; border-radius: 4px;
+    }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+    /* ---------- gate ---------- */
+    .gate {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 28px; padding: 24px; text-align: center;
+    }
+    .gate-mark { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .gate-wordmark {
+      font-family: var(--serif); font-size: 32px; letter-spacing: 0.01em;
+      color: var(--parchment);
+    }
+    .gate-wordmark span { color: var(--basking); }
+    .gate-label {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--fern);
+    }
+    .gate-form {
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      width: 100%; max-width: 320px;
+    }
+    .gate-input {
+      width: 100%;
+      background: rgba(20,28,23,0.9);
+      border: 1px solid var(--edge);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: var(--sans);
+      color: var(--parchment);
+      outline: none;
+      text-align: center;
+      transition: border-color 0.25s;
+    }
+    .gate-input::placeholder { color: #5C6A5F; }
+    .gate-input:focus { border-color: var(--basking-deep); }
+    .gate-input.shake { animation: shake 0.3s ease; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gate-input.shake { animation: none; }
+    }
+    .gate-btn {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--basking);
+      background: transparent; text-decoration: none;
+      border: 1px solid var(--edge); border-radius: 100px; padding: 11px 28px;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .gate-btn:hover { border-color: var(--basking-deep); background: rgba(226,166,91,0.06); }
+    .gate-error {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+      color: var(--basking); min-height: 16px; opacity: 0; transition: opacity 0.2s;
+    }
+    .gate-error.visible { opacity: 1; }
+
+    .gate.hidden { display: none; }
+    #content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    #content.visible { display: block; opacity: 1; }
+
+    /* ---------- nav ---------- */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 0;
+    }
+    .wordmark {
+      font-family: var(--serif);
+      font-size: 26px; letter-spacing: 0.01em;
+      color: var(--parchment); text-decoration: none;
+    }
+    .wordmark span { color: var(--basking); }
+    .nav-beta {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fern);
+    }
+
+    /* ---------- sections ---------- */
+    section { padding: 56px 0; border-top: 1px solid var(--edge-soft); }
+    section:first-of-type { padding-top: 24px; border-top: none; }
+    .sect-eyebrow {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--basking); margin-bottom: 16px;
+    }
+    h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .lede {
+      color: var(--fieldnote); max-width: 600px; font-size: 16.5px;
+    }
+
+    /* ---------- install cards ---------- */
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--edge);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+    }
+    .card h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; }
+    .card p { color: var(--fieldnote); font-size: 14.5px; }
+    .card-cta {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--basking); text-decoration: none;
+      border: 1px solid var(--edge); border-radius: 100px; padding: 9px 18px;
+      margin-top: 8px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .card-cta:hover { border-color: var(--basking-deep); background: rgba(226,166,91,0.06); }
+    .card-cta.disabled {
+      color: var(--fieldnote); border-color: var(--edge);
+      cursor: default; pointer-events: none;
+    }
+
+    /* ---------- typographic lists ---------- */
+    .list { margin-top: 28px; }
+    .list-item {
+      display: flex; gap: 20px; align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--edge-soft);
+    }
+    .list-item:first-child { border-top: 1px solid var(--edge-soft); }
+    .list-date {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+      color: var(--fern); flex-shrink: 0; width: 70px;
+    }
+    .list-text { font-size: 15px; color: var(--parchment); }
+    .issue-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--edge-soft);
+      font-size: 15px; color: var(--parchment);
+    }
+    .issue-item:first-child { border-top: 1px solid var(--edge-soft); }
+
+    /* ---------- feedback ---------- */
+    .feedback-cta {
+      display: inline-block;
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--basking); text-decoration: none;
+      border: 1px solid var(--edge); border-radius: 100px; padding: 11px 24px;
+      margin-top: 24px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .feedback-cta:hover { border-color: var(--basking-deep); background: rgba(226,166,91,0.06); }
+
+    /* ---------- credits ---------- */
+    .credits-text {
+      font-family: var(--serif); font-style: italic; font-size: 20px;
+      color: var(--fieldnote); max-width: 560px; line-height: 1.5;
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      border-top: 1px solid var(--edge-soft);
+      padding: 40px 0 48px;
+    }
+    .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
+    .foot-row p { font-family: var(--mono); font-size: 11.5px; color: var(--fieldnote); opacity: 0.7; }
+    .foot-links a {
+      font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+      color: var(--fieldnote); text-decoration: none; margin-left: 22px;
+      transition: color 0.2s;
+    }
+    .foot-links a:hover { color: var(--basking); }
+
+    @media (max-width: 640px) {
+      .cards { grid-template-columns: 1fr; }
+      .foot-row { flex-direction: column; text-align: center; }
+      .foot-links a { margin: 0 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gate" id="gate">
+    <div class="gate-mark">
+      <div class="gate-wordmark">Menagerie<span>.</span></div>
+      <div class="gate-label">Beta</div>
+    </div>
+    <form class="gate-form" id="gateForm" autocomplete="off">
+      <input class="gate-input" id="gateInput" type="password" placeholder="Access code" autocomplete="off" />
+      <div class="gate-error" id="gateError">Wrong code</div>
+      <button class="gate-btn" type="submit">Enter</button>
+    </form>
+  </div>
+
+  <div id="content">
+    <div class="wrap">
+      <nav>
+        <span class="wordmark">Menagerie<span>.</span></span>
+        <span class="nav-beta">Beta</span>
+      </nav>
+
+      <section>
+        <p class="sect-eyebrow">Welcome</p>
+        <h2>Welcome to the beta.</h2>
+        <p class="lede">You're one of a small group of keepers helping shape Menagerie before it goes live. Things might be rough around the edges — that's why you're here. Use the app like you normally would. Log feedings, check your sensors, track sheds. When something feels off or you have an idea, let us know.</p>
+      </section>
+
+      <section>
+        <p class="sect-eyebrow">Install</p>
+        <h2>Get the app</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Android</h3>
+            <p>Join the internal test on Google Play, then install.</p>
+            <a class="card-cta" href="https://play.google.com/apps/internaltest/4701672547332901731">Join test</a>
+          </div>
+          <div class="card">
+            <h3>iOS</h3>
+            <p>Install via TestFlight.</p>
+            <span class="card-cta disabled">Coming soon</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <p class="sect-eyebrow">Changelog</p>
+        <h2>What's new</h2>
+        <div class="list">
+          <div class="list-item">
+            <span class="list-date">Sep 2026</span>
+            <span class="list-text">Menagerie Wellness Index v1.1 — 13 species profiles, welfare scoring grounded in the Five Domains model</span>
+          </div>
+          <div class="list-item">
+            <span class="list-date">Sep 2026</span>
+            <span class="list-text">Security hardening — full backend audit and fix cycle, cross-tenant access closed, permissions tightened</span>
+          </div>
+          <div class="list-item">
+            <span class="list-date">Sep 2026</span>
+            <span class="list-text">Custom email — all app emails now come from Menagerie, not a dev tool</span>
+          </div>
+          <div class="list-item">
+            <span class="list-date">Sep 2026</span>
+            <span class="list-text">Free-feed mode — cats and animals on ad-lib feeding now tracked by bowl refill, not individual meals</span>
+          </div>
+          <div class="list-item">
+            <span class="list-date">Sep 2026</span>
+            <span class="list-text">Animal lifecycle — deceased, sold, and loaned status with full audit trail and The Registry</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <p class="sect-eyebrow">Heads up</p>
+        <h2>Known issues</h2>
+        <div class="list">
+          <div class="issue-item">Do not delete your account if you've logged into someone else's menagerie — the cascade isn't built yet.</div>
+          <div class="issue-item">Some error messages show raw database text instead of friendly copy.</div>
+          <div class="issue-item">The app may prompt you to restart on launch — it's receiving an over-the-air update, and that's normal.</div>
+        </div>
+      </section>
+
+      <section>
+        <p class="sect-eyebrow">Feedback</p>
+        <h2>Found something?</h2>
+        <p class="lede">Bug, friction, or a feature idea — we read everything.</p>
+        <a class="feedback-cta" href="https://forms.gle/1BQMC6XCBQDqSMnG7">Send feedback</a>
+      </section>
+
+      <section>
+        <p class="sect-eyebrow">Credits</p>
+        <h2>Credits</h2>
+        <p class="credits-text">Beta testing crew — your names will appear here as you help shape Menagerie.</p>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap foot-row">
+        <p>© 2026 Madcow Venture Company</p>
+        <div class="foot-links">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var CODE_HASH = '2043752a0cfcf48893a338e851b3dd823a7487eb3fa2c3dab9218e0217804104';
+
+      function toHex(buffer) {
+        return Array.prototype.map.call(new Uint8Array(buffer), function (b) {
+          return ('00' + b.toString(16)).slice(-2);
+        }).join('');
+      }
+
+      async function sha256Hex(text) {
+        var data = new TextEncoder().encode(text);
+        var digest = await crypto.subtle.digest('SHA-256', data);
+        return toHex(digest);
+      }
+
+      var gate = document.getElementById('gate');
+      var form = document.getElementById('gateForm');
+      var input = document.getElementById('gateInput');
+      var error = document.getElementById('gateError');
+      var content = document.getElementById('content');
+      var errorTimer = null;
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var hash = await sha256Hex(input.value);
+        if (hash === CODE_HASH) {
+          gate.classList.add('hidden');
+          content.classList.add('visible');
+        } else {
+          input.classList.remove('shake');
+          void input.offsetWidth;
+          input.classList.add('shake');
+          error.classList.add('visible');
+          if (errorTimer) clearTimeout(errorTimer);
+          errorTimer = setTimeout(function () {
+            error.classList.remove('visible');
+          }, 2000);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
